@@ -1,0 +1,19 @@
+﻿@page
+@model SchoolManagement.Pages.Users.UserListModel
+@{
+    ViewData["Title"] = "UserList";
+}
+
+<h1>UserList</h1>
+
+<table class="table">
+    @foreach(var user in Model.Users)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.Login</td>
+            <td>@user.UserType</td>
+        </tr>
+    }
+</table>
+
