@@ -9,3 +9,6 @@
 /SchoolManagement/bin/Debug/netcoreapp3.0
 /SchoolManagement.Core/bin/Debug/netcoreapp3.0
 /SchoolManagement.Data/bin/Debug/netcoreapp3.0
+/SchoolManagement/obj
+/SchoolManagement.Core/obj
+/SchoolManagement.Data/obj
