@@ -11,6 +11,8 @@ namespace SchoolManagement.Data
         IEnumerable<User> GetAllUsers();
         IEnumerable<User> GetByLogin(string name);
         User GetById(int userId);
+        User Update(User user);
+        int Commit();
     }
 
     public class InMemoryUserData : IUserData
@@ -40,6 +42,22 @@ namespace SchoolManagement.Data
         public User GetById(int userId)
         {
             return Users.SingleOrDefault(u => u.Id == userId);
+        }
+
+        public User Update(User updatedUser)
+        {
+            var user = Users.SingleOrDefault(u => u.Id == updatedUser.Id);
+            if (user != null)
+            {
+                user = updatedUser;
+            }
+
+            return user;
+        }
+
+        public int Commit()
+        {
+            return 0;
         }
     }
 }

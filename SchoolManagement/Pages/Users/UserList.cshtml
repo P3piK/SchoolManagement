@@ -31,6 +31,14 @@
             </td>
             <td>@user.Name</td>
             <td>@user.UserType</td>
+            <td>
+                <a class="btn btn-default" asp-page="./UserEdit" asp-route-userId="@user.Id">
+                    <i class="fas fa-user-edit"></i>
+                </a>
+                <a class="btn btn-default" >
+                    <i class="fas fa-user-times"></i>
+                </a>
+            </td>
         </tr>
     }
 </table>

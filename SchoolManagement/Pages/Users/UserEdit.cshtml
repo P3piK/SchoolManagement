@@ -1,0 +1,27 @@
+﻿@page "{userId:int}"
+@model SchoolManagement.Pages.Users.UserEditModel
+@{
+    ViewData["Title"] = "UserEdit";
+}
+
+<h2>Edit @Model.User.Name</h2>
+
+<form method="put">
+
+    <input type="hidden" asp-for="User.Id" />
+    <div class="form-group">
+        <label asp-for="User.Name"></label>
+        <input asp-for="User.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="User.Login"></label>
+        <input asp-for="User.Login" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="User.UserType"></label>
+        <select class="form-control" asp-for="User.UserType" asp-items="Model.UserTypes">
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
