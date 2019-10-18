@@ -18,6 +18,9 @@ namespace SchoolManagement.Pages.Users
         public string Message { get; set; }
         public IEnumerable<User> Users { get; private set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
         public UserListModel(IConfiguration config, IUserData userData)
         {
             this.config = config;
@@ -27,7 +30,7 @@ namespace SchoolManagement.Pages.Users
         public void OnGet()
         {
             Message = config["Message"];
-            Users = userData.GetAllUsers();
+            Users = userData.GetByLogin(SearchTerm);
         }
     }
 }

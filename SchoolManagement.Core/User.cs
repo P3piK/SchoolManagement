@@ -6,10 +6,11 @@ namespace SchoolManagement.Core
 {
     public enum UserType
     {
-        Admin = 0,
-        Superuser = 1,
-        Teacher = 2,
-        Student = 3,
+        None = 0,
+        Admin = 1,
+        Superuser = 2,
+        Teacher = 3,
+        Student = 4,
     }
 
     public class User
@@ -17,5 +18,6 @@ namespace SchoolManagement.Core
         public int Id { get; set; }
         public string Login { get; set; }
         public UserType UserType { get; set; }
+        public string Name { get; set; }
     }
 }

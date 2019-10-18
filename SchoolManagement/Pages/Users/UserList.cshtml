@@ -1,17 +1,35 @@
 ﻿@page
+
 @model SchoolManagement.Pages.Users.UserListModel
 @{
     ViewData["Title"] = "UserList";
 }
 
-<h1>UserList</h1>
+<h1>Users</h1>
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control"
+                   asp-for="SearchTerm" />
+            <span>
+                <button class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
 
 <table class="table">
     @foreach(var user in Model.Users)
     {
         <tr>
-            <td>@user.Id</td>
-            <td>@user.Login</td>
+            <td>
+                <a class="btn btn-link" asp-page="./UserDetail" asp-route-userId="@user.Id">
+                    @user.Login
+                </a>
+            </td>
+            <td>@user.Name</td>
             <td>@user.UserType</td>
         </tr>
     }
