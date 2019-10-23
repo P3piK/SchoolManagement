@@ -11,17 +11,18 @@ namespace SchoolManagement.Data
         IEnumerable<User> GetAllUsers();
         IEnumerable<User> GetByLogin(string name);
         User GetById(int userId);
+        User Insert(User user);
         User Update(User user);
         int Commit();
     }
 
     public class InMemoryUserData : IUserData
     {
-        IEnumerable<User> Users { get; set; }
+        readonly List<User> users;
 
         public InMemoryUserData()
         {
-            Users = new List<User>()
+            users = new List<User>()
             {
                 new User { Id = 0, Login = "pete@nasa.com", UserType = UserType.Admin, Name = "Pete" },
                 new User { Id = 1, Login = "eva@nasa.com", UserType = UserType.Teacher, Name = "Eva B" },
@@ -31,25 +32,36 @@ namespace SchoolManagement.Data
 
         public IEnumerable<User> GetAllUsers()
         {
-            return Users;
+            return users;
         }
 
         public IEnumerable<User> GetByLogin(string name)
         {
-            return Users.Where(u => String.IsNullOrEmpty(name) || u.Login.Contains(name));
+            return users.Where(u => String.IsNullOrEmpty(name) || u.Login.Contains(name));
         }
 
         public User GetById(int userId)
         {
-            return Users.SingleOrDefault(u => u.Id == userId);
+            return users.SingleOrDefault(u => u.Id == userId);
+        }
+
+        public User Insert(User newUser)
+        {
+            newUser.Id = users.Max(u => u.Id) + 1;
+            users.Add(newUser);
+
+            return newUser;
         }
 
         public User Update(User updatedUser)
         {
-            var user = Users.SingleOrDefault(u => u.Id == updatedUser.Id);
+            var user = users.SingleOrDefault(u => u.Id == updatedUser.Id);
+
             if (user != null)
             {
-                user = updatedUser;
+                user.Login = updatedUser.Login;
+                user.Name = updatedUser.Name;
+                user.UserType = updatedUser.UserType;
             }
 
             return user;
@@ -59,5 +71,6 @@ namespace SchoolManagement.Data
         {
             return 0;
         }
+
     }
 }

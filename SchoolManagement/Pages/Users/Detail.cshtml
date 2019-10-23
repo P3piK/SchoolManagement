@@ -1,10 +1,15 @@
 ﻿@page "{userId:int}"
 @model SchoolManagement.Pages.Users.UserDetailModel
 @{
-    ViewData["Title"] = "UserDetail";
+    ViewData["Title"] = "Detail";
 }
 
 <h2>@Model.User.Name</h2>
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
 
 <div>
     Id: @Model.User.Id
@@ -19,4 +24,4 @@
     Role: @Model.User.UserType
 </div>
 
-<a asp-page="./UserList" class="btn btn-outline-primary">Back</a>
+<a asp-page="./List" class="btn btn-outline-primary">Back</a>

@@ -1,12 +1,12 @@
 ﻿@page "{userId:int}"
 @model SchoolManagement.Pages.Users.UserEditModel
 @{
-    ViewData["Title"] = "UserEdit";
+    ViewData["Title"] = "Edit";
 }
 
-<h2>Edit @Model.User.Name</h2>
+<h2>Editing: @Model.User.Name</h2>
 
-<form method="put">
+<form method="post">
 
     <input type="hidden" asp-for="User.Id" />
     <div class="form-group">
@@ -22,6 +22,9 @@
         <select class="form-control" asp-for="User.UserType" asp-items="Model.UserTypes">
         </select>
     </div>
-
-    <button type="submit" class="btn btn-primary">Save</button>
+    
+    <div style="text-align: right">
+        <a class="btn btn-secondary" asp-page="./List">Back</a>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </div>
 </form>

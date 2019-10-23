@@ -2,10 +2,14 @@
 
 @model SchoolManagement.Pages.Users.UserListModel
 @{
-    ViewData["Title"] = "UserList";
+    ViewData["Title"] = "List";
 }
 
-<h1>Users</h1>
+<h2>
+    Users
+    <a class="btn btn-primary" asp-page="./Add">Add user</a>
+</h2>
+
 <form method="get">
     <div class="form-group">
         <div class="input-group">
@@ -21,21 +25,21 @@
 </form>
 
 <table class="table">
-    @foreach(var user in Model.Users)
+    @foreach (var user in Model.Users)
     {
         <tr>
             <td>
-                <a class="btn btn-link" asp-page="./UserDetail" asp-route-userId="@user.Id">
+                <a class="btn btn-link" asp-page="./Detail" asp-route-userId="@user.Id">
                     @user.Login
                 </a>
             </td>
             <td>@user.Name</td>
             <td>@user.UserType</td>
             <td>
-                <a class="btn btn-default" asp-page="./UserEdit" asp-route-userId="@user.Id">
+                <a class="btn btn-default" asp-page="./Edit" asp-route-userId="@user.Id">
                     <i class="fas fa-user-edit"></i>
                 </a>
-                <a class="btn btn-default" >
+                <a class="btn btn-default">
                     <i class="fas fa-user-times"></i>
                 </a>
             </td>
