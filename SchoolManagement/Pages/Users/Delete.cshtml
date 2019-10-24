@@ -1,0 +1,19 @@
+﻿@page "{userId:int}"
+@model SchoolManagement.Pages.Users.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Deleting @Model.User.Name</h2>
+<div class="alert alert-danger">
+    Are you sure you want to delete @Model.User.Name account?
+</div>
+
+<form method="post">
+    <div style="text-align:center">
+        <a class="btn btn-secondary" asp-page="./List">Back</a>
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </div>
+</form>
+
+

@@ -9,20 +9,18 @@ using SchoolManagement.Data;
 
 namespace SchoolManagement.Pages.Users
 {
-    public class UserDetailModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly IUserData userData;
 
-        [TempData]
-        public string Message { get; set; }
         public User User { get; set; }
 
-        public UserDetailModel(IUserData userData)
+        public DeleteModel(IUserData userData)
         {
             this.userData = userData;
         }
 
-        public IActionResult OnGet(int userId)
+        public IActionResult OnGetAsync(int userId)
         {
             IActionResult ret = Page();
             User = userData.GetById(userId);
@@ -31,6 +29,22 @@ namespace SchoolManagement.Pages.Users
             {
                 ret = RedirectToPage("./NotFound");
             }
+
+            return ret;
+        }
+
+        public IActionResult OnPostAsync(int userId)
+        {
+            IActionResult ret = RedirectToPage("./List");
+            User = userData.Remove(userId);
+            userData.Commit();
+
+            if (User == null)
+            {
+                ret = RedirectToPage("./NotFound");
+            }
+
+            TempData["Message"] = "Deleted successfully!";
 
             return ret;
         }

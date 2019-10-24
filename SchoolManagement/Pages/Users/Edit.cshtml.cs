@@ -50,7 +50,7 @@ namespace SchoolManagement.Pages.Users
                 userData.Commit();
 
                 TempData["Message"] = "User updated!";
-                ret = RedirectToPage("./Detail", new { userId = User.Id });
+                ret = RedirectToPage("./Details", new { userId = User.Id });
             }
 
             return ret;

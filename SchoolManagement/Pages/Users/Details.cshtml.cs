@@ -4,33 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
 using SchoolManagement.Core;
 using SchoolManagement.Data;
 
 namespace SchoolManagement.Pages.Users
 {
-    public class UserListModel : PageModel
+    public class UserDetailsModel : PageModel
     {
-        private readonly IConfiguration config;
         private readonly IUserData userData;
 
         [TempData]
         public string Message { get; set; }
-        public IEnumerable<User> Users { get; private set; }
+        public User User { get; set; }
 
-        [BindProperty(SupportsGet = true)]
-        public string SearchTerm { get; set; }
-
-        public UserListModel(IConfiguration config, IUserData userData)
+        public UserDetailsModel(IUserData userData)
         {
-            this.config = config;
             this.userData = userData;
         }
 
-        public void OnGet()
+        public IActionResult OnGet(int userId)
         {
-            Users = userData.GetByLogin(SearchTerm);
+            IActionResult ret = Page();
+            User = userData.GetById(userId);
+
+            if (User == null)
+            {
+                ret = RedirectToPage("./NotFound");
+            }
+
+            return ret;
         }
     }
 }
