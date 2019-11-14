@@ -16,11 +16,20 @@ namespace SchoolManagement.Core
 
     public class User //: IValidatableObject
     {
+        [Key]
         public int Id { get; set; }
-        [Required, StringLength(80)]
+
+        [Key, StringLength(80), EmailAddress]
         public string Login { get; set; }
+
         public UserType UserType { get; set; }
+
         [Required, StringLength(200)]
         public string Name { get; set; }
+        public string Address { get; set; }
+        [Phone]
+        public string Phone { get; set; }
+        [Timestamp]
+        public DateTime BirthDate { get; set; }
     }
 }
