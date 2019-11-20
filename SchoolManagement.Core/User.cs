@@ -14,12 +14,11 @@ namespace SchoolManagement.Core
         Student = 4,
     }
 
-    public class User //: IValidatableObject
+    public class User : EntityRecordBase //: IValidatableObject
     {
-        [Key]
         public int Id { get; set; }
 
-        [Key, StringLength(80), EmailAddress]
+        [StringLength(80), EmailAddress]
         public string Login { get; set; }
 
         public UserType UserType { get; set; }
@@ -29,7 +28,7 @@ namespace SchoolManagement.Core
         public string Address { get; set; }
         [Phone]
         public string Phone { get; set; }
-        [Timestamp]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
+
     }
 }

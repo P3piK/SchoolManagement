@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SchoolManagement.Core
 {
-    public class CourseGroup
+    public class CourseGroup : EntityRecordBase
     {
-        [Key]
         public int Id { get; set; }
-        [Key]
+        [ForeignKey("UserFK")]
         public User User { get; set; }
-        [Key]
+        [ForeignKey("CourseFK")]
         public Course Course { get; set; }
+
     }
 }

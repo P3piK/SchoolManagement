@@ -17,32 +17,20 @@ namespace SchoolManagement.Data
 
         public SmContext Context { get; }
 
+        #region SQL Base Methods
         public int Commit()
         {
             return Context.SaveChanges();
         }
 
-        public IEnumerable<User> GetAllUsers()
-        {
-            return Context.Users;
-        }
-
-        public User GetById(int userId)
-        {
-            return Context.Users.Find(userId);
-        }
-
-        public IEnumerable<User> GetByLogin(string name)
-        {
-            return from u in Context.Users
-                   where u.Name.Contains(name) || String.IsNullOrEmpty(name)
-                   select u;
-        }
-
         public User Insert(User user)
         {
-            var entry = Context.Users.Add(user);
-            entry.State = EntityState.Added;
+            if (GetByLogin(user.Login) == null)
+            {
+                user.SetupSystemFields();
+                var entry = Context.Users.Add(user);
+                entry.State = EntityState.Added;
+            }
 
             return user;
         }
@@ -56,15 +44,49 @@ namespace SchoolManagement.Data
                 entry.State = EntityState.Deleted;
             }
 
+            // TODO: Log removal
+            
             return user;
         }
 
         public User Update(User user)
         {
+            user.SetupSystemFields();
             var entry = Context.Users.Attach(user);
             entry.State = EntityState.Modified;
 
             return user;
         }
+
+        #endregion
+
+        #region Public Methods
+        public IEnumerable<User> FindAll()
+        {
+            return Context.Users;
+        }
+
+        public User GetById(int userId)
+        {
+            return Context.Users.Find(userId);
+        }
+
+        public IEnumerable<User> FindByPartialLogin(string login)
+        {
+            return Context.Users.Where(u => u.Name.Contains(login) || String.IsNullOrEmpty(login));
+        }
+
+        public User GetByLogin(string login)
+        {
+            return Context.Users.Where(u => u.Login.Equals(login)).SingleOrDefault();
+        }
+
+        #endregion
+
+        #region Private
+
+
+
+        #endregion
     }
 }

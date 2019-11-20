@@ -30,7 +30,7 @@ namespace SchoolManagement.Pages.Users
 
         public void OnGet()
         {
-            Users = userData.GetByLogin(SearchTerm);
+            Users = userData.FindByPartialLogin(SearchTerm);
         }
     }
 }

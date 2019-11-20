@@ -9,16 +9,33 @@
 <form method="post">
     <div class="form-group">
         <label asp-for="User.Name"></label>
-        <input asp-for="User.Name" class="form-control" />
+        <input asp-for="User.Name" class="form-control" type="text" />
     </div>
+
     <div class="form-group">
         <label asp-for="User.Login"></label>
-        <input asp-for="User.Login" class="form-control" />
+        <input asp-for="User.Login" class="form-control" type="email" />
     </div>
+
     <div class="form-group">
         <label asp-for="User.UserType"></label>
         <select class="form-control" asp-for="User.UserType" asp-items="Model.UserTypes">
         </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.Phone"></label>
+        <input asp-for="User.Phone" class="form-control" type="text" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.Address"></label>
+        <input asp-for="User.Address" class="form-control" type="text" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.BirthDate"></label>
+        <input asp-for="User.BirthDate" class="form-control" type="date" />
     </div>
 
     <div style="text-align: right">

@@ -12,8 +12,8 @@ namespace SchoolManagement.Pages.Users
 {
     public class UserEditModel : PageModel
     {
-        private readonly IUserData userData;
-        private readonly IHtmlHelper htmlHelper;
+        private IUserData userData;
+        private IHtmlHelper htmlHelper;
 
         [BindProperty]
         public User User { get; set; }

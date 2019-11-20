@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SchoolManagement.Core
 {
-    public class Lesson
+    public class Lesson : EntityRecordBase
     {
-        [Key]
         public int Id { get; set; }
-        [Required]
+        [Required, ForeignKey("CourseFK")]
         public Course Course { get; set; }
         [StringLength(200)]
         public string Subject { get; set; }

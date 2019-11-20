@@ -8,8 +8,9 @@ namespace SchoolManagement.Data
 {
     public interface IUserData
     {
-        IEnumerable<User> GetAllUsers();
-        IEnumerable<User> GetByLogin(string name);
+        IEnumerable<User> FindAll();
+        IEnumerable<User> FindByPartialLogin(string name);
+        User GetByLogin(string name);
         User GetById(int userId);
         User Insert(User user);
         User Update(User user);
