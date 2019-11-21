@@ -10,20 +10,35 @@
 
     <input type="hidden" asp-for="User.Id" />
     <div class="form-group">
-            <label asp-for="User.Name"></label>
-            <input asp-for="User.Name" class="form-control" type="text" />
+        <label asp-for="User.Name"></label>
+        <input asp-for="User.Name" class="form-control" type="text" maxlength="200" />
     </div>
 
     <div class="form-group">
         <label asp-for="User.Login"></label>
-        <input asp-for="User.Login" class="form-control" type="email" />
+        <input asp-for="User.Login" class="form-control" type="email" required="required" readonly="readonly" />
     </div>
 
     <div class="form-group">
         <label asp-for="User.UserType"></label>
-        <select class="form-control" asp-for="User.UserType" asp-items="Model.UserTypes" ></select>
+        <select class="form-control" asp-for="User.UserType" asp-items="Model.UserTypes" required="required"></select>
     </div>
-    
+
+    <div class="form-group">
+        <label asp-for="User.Phone"></label>
+        <input asp-for="User.Phone" class="form-control" type="tel" maxlength="13" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.Address"></label>
+        <input asp-for="User.Address" class="form-control" type="text" maxlength="100" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="User.BirthDate"></label>
+        <input asp-for="User.BirthDate" class="form-control" type="date" />
+    </div>
+
     <div style="text-align: right">
         <a class="btn btn-secondary" asp-page="./List">Back</a>
         <button class="btn btn-primary" type="submit">Save</button>

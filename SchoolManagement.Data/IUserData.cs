@@ -14,7 +14,6 @@ namespace SchoolManagement.Data
         User GetById(int userId);
         User Insert(User user);
         User Update(User user);
-        User Remove(int id);
         int Commit();
     }
 }

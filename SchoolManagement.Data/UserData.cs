@@ -18,6 +18,7 @@ namespace SchoolManagement.Data
         public SmContext Context { get; }
 
         #region SQL Base Methods
+
         public int Commit()
         {
             return Context.SaveChanges();
@@ -25,27 +26,10 @@ namespace SchoolManagement.Data
 
         public User Insert(User user)
         {
-            if (GetByLogin(user.Login) == null)
-            {
-                user.SetupSystemFields();
-                var entry = Context.Users.Add(user);
-                entry.State = EntityState.Added;
-            }
+            user.SetupSystemFields();
+            var entry = Context.Users.Add(user);
+            entry.State = EntityState.Added;
 
-            return user;
-        }
-
-        public User Remove(int id)
-        {
-            var user = GetById(id);
-            if (user != null)
-            {
-                var entry = Context.Users.Remove(user);
-                entry.State = EntityState.Deleted;
-            }
-
-            // TODO: Log removal
-            
             return user;
         }
 
@@ -61,6 +45,7 @@ namespace SchoolManagement.Data
         #endregion
 
         #region Public Methods
+
         public IEnumerable<User> FindAll()
         {
             return Context.Users;
@@ -71,9 +56,9 @@ namespace SchoolManagement.Data
             return Context.Users.Find(userId);
         }
 
-        public IEnumerable<User> FindByPartialLogin(string login)
+        public IEnumerable<User> FindByPartialLogin(string searchTerm)
         {
-            return Context.Users.Where(u => u.Name.Contains(login) || String.IsNullOrEmpty(login));
+            return Context.Users.Where(u => u.Name.Contains(searchTerm) || u.Login.Contains(searchTerm) || String.IsNullOrEmpty(searchTerm));
         }
 
         public User GetByLogin(string login)
