@@ -13,9 +13,7 @@ namespace SchoolManagement.Core
         public Course Course { get; set; }
         [StringLength(200)]
         public string Subject { get; set; }
-        [Timestamp]
         public DateTime StartDate { get; set; }
-        [Timestamp]
         public DateTime EndDate { get; set; }
 
     }

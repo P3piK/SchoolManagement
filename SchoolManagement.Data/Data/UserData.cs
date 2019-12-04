@@ -4,45 +4,16 @@ using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Core;
+using SchoolManagement.Data.Interfaces;
 
-namespace SchoolManagement.Data
+namespace SchoolManagement.Data.Data
 {
-    public class UserData : IUserData
+    public class UserData : SqlBaseData<User>, IUserData
     {
-
         public UserData(SmContext context)
+            : base(context)
         {
-            this.Context = context;
         }
-
-        public SmContext Context { get; }
-
-        #region SQL Base Methods
-
-        public int Commit()
-        {
-            return Context.SaveChanges();
-        }
-
-        public User Insert(User user)
-        {
-            user.SetupSystemFields();
-            var entry = Context.Users.Add(user);
-            entry.State = EntityState.Added;
-
-            return user;
-        }
-
-        public User Update(User user)
-        {
-            user.SetupSystemFields();
-            var entry = Context.Users.Attach(user);
-            entry.State = EntityState.Modified;
-
-            return user;
-        }
-
-        #endregion
 
         #region Public Methods
 

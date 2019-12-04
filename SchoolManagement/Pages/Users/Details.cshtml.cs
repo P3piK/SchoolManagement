@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SchoolManagement.Core;
-using SchoolManagement.Data;
+using SchoolManagement.Data.Interfaces;
 
 namespace SchoolManagement.Pages.Users
 {

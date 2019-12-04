@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SchoolManagement.Data;
+using SchoolManagement.Data.Data;
+using SchoolManagement.Data.Interfaces;
 
 namespace SchoolManagement
 {

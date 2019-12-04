@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SchoolManagement.Core;
-using SchoolManagement.Data;
+using SchoolManagement.Data.Interfaces;
 
 namespace SchoolManagement.Pages.Users
 {
