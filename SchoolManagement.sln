@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement", "SchoolManagement\SchoolManagement.csproj", "{F988A266-4288-44C2-ADC9-4D23C1E89775}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.Domain", "SchoolManagement.Domain\SchoolManagement.Domain.csproj", "{F94B107E-7873-413E-8B52-E65D05352147}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.Core", "SchoolManagement.Core\SchoolManagement.Core.csproj", "{531B0F76-D45E-466C-90B7-35933DC217F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.Persistance", "SchoolManagement.Persistance\SchoolManagement.Persistance.csproj", "{D2DD1759-EB8D-45AB-982D-5EC524535FD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.Data", "SchoolManagement.Data\SchoolManagement.Data.csproj", "{120489B3-F435-44F3-B59C-BDF198F2E4D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.Application", "SchoolManagement.Application\SchoolManagement.Application.csproj", "{4ABBC056-434D-4B40-9987-E782F9A4BF2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.WebApi", "SchoolManagement.WebApi\SchoolManagement.WebApi.csproj", "{E30CAAAA-3503-4DAF-A381-65788CF42054}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F988A266-4288-44C2-ADC9-4D23C1E89775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F988A266-4288-44C2-ADC9-4D23C1E89775}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F988A266-4288-44C2-ADC9-4D23C1E89775}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F988A266-4288-44C2-ADC9-4D23C1E89775}.Release|Any CPU.Build.0 = Release|Any CPU
-		{531B0F76-D45E-466C-90B7-35933DC217F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{531B0F76-D45E-466C-90B7-35933DC217F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{531B0F76-D45E-466C-90B7-35933DC217F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{531B0F76-D45E-466C-90B7-35933DC217F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{120489B3-F435-44F3-B59C-BDF198F2E4D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{120489B3-F435-44F3-B59C-BDF198F2E4D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{120489B3-F435-44F3-B59C-BDF198F2E4D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{120489B3-F435-44F3-B59C-BDF198F2E4D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F94B107E-7873-413E-8B52-E65D05352147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F94B107E-7873-413E-8B52-E65D05352147}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F94B107E-7873-413E-8B52-E65D05352147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F94B107E-7873-413E-8B52-E65D05352147}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2DD1759-EB8D-45AB-982D-5EC524535FD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2DD1759-EB8D-45AB-982D-5EC524535FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2DD1759-EB8D-45AB-982D-5EC524535FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2DD1759-EB8D-45AB-982D-5EC524535FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ABBC056-434D-4B40-9987-E782F9A4BF2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ABBC056-434D-4B40-9987-E782F9A4BF2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ABBC056-434D-4B40-9987-E782F9A4BF2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ABBC056-434D-4B40-9987-E782F9A4BF2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E30CAAAA-3503-4DAF-A381-65788CF42054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30CAAAA-3503-4DAF-A381-65788CF42054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30CAAAA-3503-4DAF-A381-65788CF42054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30CAAAA-3503-4DAF-A381-65788CF42054}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

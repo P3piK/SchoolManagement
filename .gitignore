@@ -13,3 +13,11 @@
 /SchoolManagement.Core/obj
 /SchoolManagement.Data/obj
 /Documentation/SchoolManagement.archimate.bak
+/SchoolManagement.Application/obj
+/SchoolManagement.Domain/obj
+/SchoolManagement.Persistance/obj
+/SchoolManagement.WebApi/obj
+/SchoolManagement.Persistance/bin/Debug/netcoreapp3.1
+/SchoolManagement.WebApi/bin/Debug/netcoreapp3.1
+/SchoolManagement.Domain/bin/Debug/netcoreapp3.1
+/SchoolManagement.Application/bin/Debug/netcoreapp3.1
