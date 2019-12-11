@@ -12,6 +12,7 @@ namespace SchoolManagement.Persistance
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseGroup> CourseGroups { get; set; }
+        public DbSet<CourseGrade> CourseGrades { get; set; }
 
         public SmContext(DbContextOptions options)
             : base(options)

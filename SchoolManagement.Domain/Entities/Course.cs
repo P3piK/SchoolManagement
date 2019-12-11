@@ -12,6 +12,8 @@ namespace SchoolManagement.Domain.Entities
         public string Name { get; set; }
         [Required, ForeignKey("UserFK")]
         public User Tutor { get; set; }
+        public string Code { get; set; }
+        public string CodeGenerationDate { get; set; }
 
     }
 }
