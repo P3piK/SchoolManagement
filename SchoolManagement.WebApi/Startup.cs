@@ -11,9 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SchoolManagement.Application.Commands;
-using SchoolManagement.Application.Interfaces;
-using SchoolManagement.Application.Services;
+using SchoolManagement.Application.Users.Interfaces;
+using SchoolManagement.Application.Users.Queries;
+using SchoolManagement.Application.Users.Services;
 using SchoolManagement.Persistance;
 using SchoolManagement.Persistance.Data;
 
@@ -31,6 +31,8 @@ namespace SchoolManagement.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
             services.AddDbContextPool<SmContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SchoolManagementDb"));
@@ -39,7 +41,7 @@ namespace SchoolManagement.WebApi
             //services.AddAutoMapper(typeof(SmContext));
 
             services.AddScoped<IUserData, UserData>();
-            services.AddScoped<IAdministrationCommand, AdministrationCommand>();
+            services.AddScoped<IGetUserQuery, GetUserQuery>();
 
         }
 

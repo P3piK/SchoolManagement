@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolManagement.Application.Services
+namespace SchoolManagement.Application
 {
     public interface ISqlBaseData<T>
     {

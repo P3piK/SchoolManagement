@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace SchoolManagement.Domain.Entities
+namespace SchoolManagement.Application.Users.Dto
 {
     public enum UserType
     {
@@ -20,15 +21,16 @@ namespace SchoolManagement.Domain.Entities
         PasswordReset = 2,
     }
 
-    public class User : EntityBase
+    public class UserDto
     {
+        [Required, EmailAddress]
         public string Login { get; set; }
-        public UserType UserTypeCode { get; set; }
-        public UserStatus StatusCode { get; set; }
+        public UserType UserType {get;set;}
+        public UserStatus Status { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        [Phone]
         public string Phone { get; set; }
         public DateTime? BirthDate { get; set; }
-
     }
 }
