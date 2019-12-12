@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolManagement.Application
+namespace SchoolManagement.Application.Interfaces
 {
     public interface ISqlBaseData<T>
     {
-        int Commit();
-        T Insert(T obj);
-        T Update(T obj);
+        int Insert(T obj);
+        int Update(T obj);
     }
 }

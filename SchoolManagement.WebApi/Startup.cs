@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,9 +13,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SchoolManagement.Application.Users.Interfaces;
-using SchoolManagement.Application.Users.Queries;
-using SchoolManagement.Application.Users.Services;
+using SchoolManagement.Application;
+using SchoolManagement.Application.Interfaces;
+using SchoolManagement.Application.Users.Commands.CreateUser;
+using SchoolManagement.Application.Users.Queries.GetUser;
+using SchoolManagement.Domain.Entities;
 using SchoolManagement.Persistance;
 using SchoolManagement.Persistance.Data;
 
@@ -38,10 +42,16 @@ namespace SchoolManagement.WebApi
                 options.UseSqlServer(Configuration.GetConnectionString("SchoolManagementDb"));
             });
 
-            //services.AddAutoMapper(typeof(SmContext));
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.CreateMap<CreateUserDto, User>().ConvertUsing<CreateUserConverter>();
+                cfg.CreateMap<User, GetUserDto>().ConvertUsing<UserConverter>();
+            }, typeof(ISqlBaseData<>));
+            
 
             services.AddScoped<IUserData, UserData>();
             services.AddScoped<IGetUserQuery, GetUserQuery>();
+            services.AddScoped<ICreateUserCommand, CreateUserCommand>();
 
         }
 

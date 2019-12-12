@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SchoolManagement.Application.Users.Services
+namespace SchoolManagement.Application.Interfaces
 {
     public interface IUserData : ISqlBaseData<User>
     {

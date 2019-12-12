@@ -1,4 +1,4 @@
-﻿using SchoolManagement.Application.Users.Services;
+﻿using SchoolManagement.Application.Interfaces;
 using SchoolManagement.Domain.Entities;
 using System;
 using System.Collections.Generic;

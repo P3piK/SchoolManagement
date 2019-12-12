@@ -25,6 +25,8 @@ namespace SchoolManagement.Domain.Entities
         public string Login { get; set; }
         public UserType UserTypeCode { get; set; }
         public UserStatus StatusCode { get; set; }
+        //public int StudentId { get; set; }
+        //public int TeacherId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }

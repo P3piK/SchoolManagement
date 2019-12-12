@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SchoolManagement.Application.Interfaces;
 using SchoolManagement.Domain;
 
 namespace SchoolManagement.Persistance.Data
 {
-    public class SqlBaseData<T> where T : EntityBase
+    public abstract class SqlBaseData<T> : ISqlBaseData<T> 
+        where T : EntityBase
     {
         public SqlBaseData(SmContext context)
         {
@@ -12,28 +14,27 @@ namespace SchoolManagement.Persistance.Data
 
         public SmContext Context { get; }
 
-
-        public int Commit()
-        {
-            return Context.SaveChanges();
-        }
-
-        public T Insert(T obj)
+        public int Insert(T obj)
         {
             obj.SetupSystemFields();
             var entry = Context.Add(obj);
             entry.State = EntityState.Added;
 
-            return obj;
+            return Commit();
         }
 
-        public T Update(T obj)
+        public int Update(T obj)
         {
             obj.SetupSystemFields();
             var entry = Context.Attach(obj);
             entry.State = EntityState.Modified;
 
-            return obj;
+            return Commit();
+        }
+
+        private int Commit()
+        {
+            return Context.SaveChanges();
         }
     }
 }
