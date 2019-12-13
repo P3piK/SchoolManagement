@@ -17,15 +17,25 @@ namespace SchoolManagement.WebApi.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        #region Fields
+
         private readonly IGetUserQuery getUserQuery;
         private readonly ICreateUserCommand createUserCommand;
+        private readonly IUpdateUserCommand updateUserCommand;
+
+        #endregion
+        #region Constructor
 
         public UsersController(IGetUserQuery getUserQuery, 
-            ICreateUserCommand createUserCommand)
+            ICreateUserCommand createUserCommand, 
+            IUpdateUserCommand updateUserCommand)
         {
             this.getUserQuery = getUserQuery;
             this.createUserCommand = createUserCommand;
+            this.updateUserCommand = updateUserCommand;
         }
+
+        #endregion
 
         [HttpGet]
         public IActionResult GetAllUsers()
@@ -59,10 +69,14 @@ namespace SchoolManagement.WebApi.Controllers
         {
             try
             {
-                // update
+                updateUserCommand.UpdateUser(dto);
                 return Ok();
             }
             catch (AccountNotExistsException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (AccountExistsException ex)
             {
                 return BadRequest(ex.Message);
             }

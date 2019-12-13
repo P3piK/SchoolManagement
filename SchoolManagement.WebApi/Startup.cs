@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using SchoolManagement.Application;
 using SchoolManagement.Application.Interfaces;
 using SchoolManagement.Application.Users.Commands.CreateUser;
+using SchoolManagement.Application.Users.Commands.UpdateUser;
 using SchoolManagement.Application.Users.Queries.GetUser;
 using SchoolManagement.Domain.Entities;
 using SchoolManagement.Persistance;
@@ -46,12 +47,14 @@ namespace SchoolManagement.WebApi
             {
                 cfg.CreateMap<CreateUserDto, User>().ConvertUsing<CreateUserConverter>();
                 cfg.CreateMap<User, GetUserDto>().ConvertUsing<UserConverter>();
+                cfg.CreateMap<UpdateUserDto, User>().ConvertUsing<UpdateUserConverter>();
             }, typeof(ISqlBaseData<>));
             
 
             services.AddScoped<IUserData, UserData>();
             services.AddScoped<IGetUserQuery, GetUserQuery>();
             services.AddScoped<ICreateUserCommand, CreateUserCommand>();
+            services.AddScoped<IUpdateUserCommand, UpdateUserCommand>();
 
         }
 
