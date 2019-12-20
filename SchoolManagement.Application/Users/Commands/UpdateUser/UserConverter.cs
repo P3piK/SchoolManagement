@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SchoolManagement.Application.Users.Commands.UpdateUser
 {
-    public class UpdateUserConverter : ITypeConverter<UpdateUserDto, User>
+    public class UserConverter : ITypeConverter<UpdateUserDto, User>
     {
         public User Convert(UpdateUserDto source, User destination, ResolutionContext context)
         {

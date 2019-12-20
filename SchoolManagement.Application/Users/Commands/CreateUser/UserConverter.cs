@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SchoolManagement.Application.Users.Commands.CreateUser
 {
-    public class CreateUserConverter : ITypeConverter<CreateUserDto, User>
+    public class UserConverter : ITypeConverter<CreateUserDto, User>
     {
         public User Convert(CreateUserDto source, User destination, ResolutionContext context)
         {

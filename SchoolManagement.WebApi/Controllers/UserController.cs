@@ -15,7 +15,7 @@ namespace SchoolManagement.WebApi.Controllers
     [RequireHttps]
     [Route("api/users")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         #region Fields
 
@@ -26,7 +26,7 @@ namespace SchoolManagement.WebApi.Controllers
         #endregion
         #region Constructor
 
-        public UsersController(IGetUserQuery getUserQuery, 
+        public UserController(IGetUserQuery getUserQuery, 
             ICreateUserCommand createUserCommand, 
             IUpdateUserCommand updateUserCommand)
         {

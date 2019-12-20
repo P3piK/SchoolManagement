@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SchoolManagement.Application;
+using SchoolManagement.Application.Courses.Queries.GetCourse;
 using SchoolManagement.Application.Interfaces;
 using SchoolManagement.Application.Users.Commands.CreateUser;
 using SchoolManagement.Application.Users.Commands.UpdateUser;
@@ -45,9 +46,9 @@ namespace SchoolManagement.WebApi
 
             services.AddAutoMapper(cfg =>
             {
-                cfg.CreateMap<CreateUserDto, User>().ConvertUsing<CreateUserConverter>();
-                cfg.CreateMap<User, GetUserDto>().ConvertUsing<UserConverter>();
-                cfg.CreateMap<UpdateUserDto, User>().ConvertUsing<UpdateUserConverter>();
+                cfg.CreateMap<User, GetUserDto>().ConvertUsing<Application.Users.Queries.GetUser.GetUserConverter>();
+                cfg.CreateMap<CreateUserDto, User>().ConvertUsing<Application.Users.Commands.CreateUser.UserConverter>();
+                cfg.CreateMap<UpdateUserDto, User>().ConvertUsing<Application.Users.Commands.UpdateUser.UserConverter>();
             }, typeof(ISqlBaseData<>));
             
 
@@ -55,6 +56,8 @@ namespace SchoolManagement.WebApi
             services.AddScoped<IGetUserQuery, GetUserQuery>();
             services.AddScoped<ICreateUserCommand, CreateUserCommand>();
             services.AddScoped<IUpdateUserCommand, UpdateUserCommand>();
+            services.AddScoped<ICourseData, CourseData>();
+            services.AddScoped<IGetCourseQuery, GetCourseQuery>();
 
         }
 

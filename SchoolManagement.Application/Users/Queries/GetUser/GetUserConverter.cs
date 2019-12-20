@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SchoolManagement.Application.Users.Queries.GetUser
 {
-    public class UserConverter : ITypeConverter<User, GetUserDto>
+    public class GetUserConverter : ITypeConverter<User, GetUserDto>
     {
         public GetUserDto Convert(User source, GetUserDto destination, ResolutionContext context)
         {
