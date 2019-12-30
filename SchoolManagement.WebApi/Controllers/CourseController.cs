@@ -4,7 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SchoolManagement.Application.Courses.Commands.CreateCourse;
+using SchoolManagement.Application.Courses.Commands.UpdateCourse;
+using SchoolManagement.Application.Courses.Exceptions;
 using SchoolManagement.Application.Courses.Queries.GetCourse;
+using SchoolManagement.Application.Users.Exceptions;
 
 namespace SchoolManagement.WebApi.Controllers
 {
@@ -12,18 +16,22 @@ namespace SchoolManagement.WebApi.Controllers
     [ApiController]
     public class CourseController : ControllerBase
     {
-        private readonly IGetCourseQuery getCourseQuery;
+        private readonly IGetCourseQuery getCourse;
+        private readonly ICreateCourseCommand createCourse;
+        private readonly IUpdateCourseCommand updateCourse;
 
-        public CourseController(IGetCourseQuery getCourseQuery)
+        public CourseController(IGetCourseQuery getCourseQuery, ICreateCourseCommand createCourseCommand, IUpdateCourseCommand updateCourse)
         {
-            this.getCourseQuery = getCourseQuery;
+            this.getCourse = getCourseQuery;
+            this.createCourse = createCourseCommand;
+            this.updateCourse = updateCourse;
         }
 
         // GET: api/Courses
         [HttpGet]
         public ActionResult Get()
         {
-            var courses = getCourseQuery.FindAll();
+            var courses = getCourse.FindAll();
             return Ok(courses);
         }
 
@@ -31,7 +39,7 @@ namespace SchoolManagement.WebApi.Controllers
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var course = getCourseQuery.GetById(id);
+            var course = getCourse.GetById(id);
             return Ok(course);
         }
 
@@ -39,7 +47,7 @@ namespace SchoolManagement.WebApi.Controllers
         [HttpGet("{name}")]
         public ActionResult Get(string name)
         {
-            var courses = getCourseQuery.FindByName(name);
+            var courses = getCourse.FindByName(name);
             return Ok(courses);
         }
 
@@ -47,22 +55,42 @@ namespace SchoolManagement.WebApi.Controllers
         [HttpGet]
         public ActionResult GetByTutor([FromQuery] int tutorId)
         {
-            var courses = getCourseQuery.FindByTutor(tutorId);
+            var courses = getCourse.FindByTutor(tutorId);
             return Ok(courses);
         }
 
         // POST: api/Course
         [HttpPost]
-        public ActionResult Post([FromBody] string value)
+        public ActionResult Post([FromBody] CreateCourseDto courseDto)
         {
-            return Ok();
+            try
+            {
+                createCourse.CreateCourse(courseDto);
+                return Ok();
+            }
+            catch (TutorNotExistsException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT: api/Course/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody] UpdateCourseDto courseDto)
         {
-            return Ok();
+            try
+            {
+                updateCourse.UpdateCourse(id, courseDto);
+                return Ok();
+            }
+            catch (CourseNotExistsException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (TutorNotExistsException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

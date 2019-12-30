@@ -1,4 +1,5 @@
-﻿using SchoolManagement.Application.Users.Exceptions;
+﻿using SchoolManagement.Application.Courses.Exceptions;
+using SchoolManagement.Application.Users.Exceptions;
 using SchoolManagement.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,20 @@ namespace SchoolManagement.Application.Helpers
             }
         }
 
-        //public static void EnsureLoginExists()
+        public static void EnsureTutorExists(User user, int tutorId)
+        {
+            if (user == null)
+            {
+                throw new TutorNotExistsException(tutorId);
+            }
+        }
+
+        public static void EnsureCourseExists(Course course, int id)
+        {
+            if (course == null)
+            {
+                throw new CourseNotExistsException(id);
+            }
+        }
     }
 }

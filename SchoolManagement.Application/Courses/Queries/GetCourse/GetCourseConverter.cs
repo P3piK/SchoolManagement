@@ -15,7 +15,11 @@ namespace SchoolManagement.Application.Courses.Queries.GetCourse
                 destination = new GetCourseDto();
             }
 
-            // code here
+            destination.BeginDate = source.BeginDate;
+            destination.Descritpion = source.Description;
+            destination.Id = source.Id;
+            destination.Name = source.Name;
+            destination.Tutor = source.Tutor.Name;
 
             return destination;
         }

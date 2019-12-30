@@ -20,11 +20,20 @@ namespace SchoolManagement.Application.Users.Commands.CreateUser
             this.userData = userData;
         }
 
-        public void CreateUser(CreateUserDto user)
+        public void CreateUser(CreateUserDto userDto)
         {
-            Guard.EnsureAccountNotExists(userData.GetByLogin(user.Login));
+            Guard.EnsureAccountNotExists(userData.GetByLogin(userDto.Login));
+            var user = mapper.Map<User>(userDto);
 
-            userData.Insert(mapper.Map<User>(user));
+            // TODO:
+            // Refactor to Factory Pattern
+            if (user.UserTypeCode == UserType.Teacher)
+            {
+                user.TutorId = userData.GetMaxTutorId() + 1;
+            }
+            /////////////
+
+            userData.Insert(user);
         }
     }
 }

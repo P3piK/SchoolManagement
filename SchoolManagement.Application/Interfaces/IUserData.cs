@@ -12,5 +12,7 @@ namespace SchoolManagement.Application.Interfaces
         IEnumerable<User> FindByPartialLogin(string name);
         User GetByLogin(string name);
         User GetById(int userId);
+        User GetByTutorId(int tutorId);
+        int GetMaxTutorId();
     }
 }

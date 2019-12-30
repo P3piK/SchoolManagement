@@ -7,6 +7,7 @@ namespace SchoolManagement.Application.Courses.Queries.GetCourse
 {
     public class GetCourseDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Tutor { get; set; }
         public string Descritpion { get; set; }

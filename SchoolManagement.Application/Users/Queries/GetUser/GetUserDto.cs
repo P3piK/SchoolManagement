@@ -11,6 +11,8 @@ namespace SchoolManagement.Application.Users.Queries.GetUser
         public string Login { get; set; }
         public UserType? UserType {get;set;}
         public UserStatus? Status { get; set; }
+        public int? StudentId { get; set; }
+        public int? TutorId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }

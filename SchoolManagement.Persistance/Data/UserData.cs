@@ -38,6 +38,16 @@ namespace SchoolManagement.Persistance.Data
             return Context.Users.Where(u => u.Login.Equals(login)).SingleOrDefault();
         }
 
+        public User GetByTutorId(int tutorId)
+        {
+            return Context.Users.Where(u => u.TutorId == tutorId).SingleOrDefault();
+        }
+
+        public int GetMaxTutorId()
+        {
+            return Context.Users.Max(u => u.TutorId) ?? 0;
+        }
+
         #endregion
 
         #region Private

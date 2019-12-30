@@ -19,6 +19,8 @@ namespace SchoolManagement.Application.Users.Queries.GetUser
             destination.Name = source.Name;
             destination.Phone = source.Phone;
             destination.Status = (Enums.UserStatus)source.StatusCode;
+            destination.StudentId = source.StudentId;
+            destination.TutorId = source.TutorId;
             destination.UserType = (Enums.UserType)source.UserTypeCode;
 
             return destination;

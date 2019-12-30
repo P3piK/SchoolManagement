@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Courses\Commands\" />
-    <Folder Include="Courses\Exceptions\" />
     <Folder Include="Courses\Enums\" />
   </ItemGroup>
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagement.Persistance;
 
 namespace SchoolManagement.Persistance.Migrations
 {
     [DbContext(typeof(SmContext))]
-    partial class SmContextModelSnapshot : ModelSnapshot
+    [Migration("20191230140526_AddStudentIdTutorId")]
+    partial class AddStudentIdTutorId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,10 +169,10 @@ namespace SchoolManagement.Persistance.Migrations
                     b.Property<int>("StatusCode")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentId")
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TutorId")
+                    b.Property<int>("TutorId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserTypeCode")
