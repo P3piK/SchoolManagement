@@ -20,17 +20,16 @@ namespace SchoolManagement.Application.Users.Queries.GetUser
 
         public IEnumerable<GetUserDto> GetAllUsers()
         {
-            var users = userData.FindAll()
-                .Select(u => mapper.Map<GetUserDto>(u));
+            var users = userData.FindAll();
 
-            return users;
+            return mapper.Map<IEnumerable<GetUserDto>>(users);
         }
 
         public GetUserDto GetByLogin(string login)
         {
-            var user = mapper.Map<GetUserDto>(userData.GetByLogin(login));
+            var user = userData.GetByLogin(login);
 
-            return user;
+            return mapper.Map<GetUserDto>(user);
         }
     }
 }

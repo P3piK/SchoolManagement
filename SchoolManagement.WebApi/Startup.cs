@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SchoolManagement.Application;
 using SchoolManagement.Application.Courses.Commands.CreateCourse;
+using SchoolManagement.Application.Courses.Commands.GenerateEntryCode;
 using SchoolManagement.Application.Courses.Commands.UpdateCourse;
 using SchoolManagement.Application.Courses.Queries.GetCourse;
 using SchoolManagement.Application.Interfaces;
@@ -65,6 +66,7 @@ namespace SchoolManagement.WebApi
             services.AddScoped<IGetCourseQuery, GetCourseQuery>();
             services.AddScoped<ICreateCourseCommand, CreateCourseCommand>();
             services.AddScoped<IUpdateCourseCommand, UpdateCourseCommand>();
+            services.AddScoped<IGenerateEntryCodeCommand, GenerateEntryCodeCommand>();
 
         }
 

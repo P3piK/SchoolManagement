@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Application.Courses.Commands.CreateCourse;
+using SchoolManagement.Application.Courses.Commands.GenerateEntryCode;
 using SchoolManagement.Application.Courses.Commands.UpdateCourse;
 using SchoolManagement.Application.Courses.Exceptions;
 using SchoolManagement.Application.Courses.Queries.GetCourse;
@@ -16,16 +17,29 @@ namespace SchoolManagement.WebApi.Controllers
     [ApiController]
     public class CourseController : ControllerBase
     {
+        #region Fields
+
         private readonly IGetCourseQuery getCourse;
         private readonly ICreateCourseCommand createCourse;
         private readonly IUpdateCourseCommand updateCourse;
+        private readonly IGenerateEntryCodeCommand accessCourse;
 
-        public CourseController(IGetCourseQuery getCourseQuery, ICreateCourseCommand createCourseCommand, IUpdateCourseCommand updateCourse)
+        #endregion
+
+        #region Constructor 
+
+        public CourseController(IGetCourseQuery getCourseQuery, 
+            ICreateCourseCommand createCourseCommand, 
+            IUpdateCourseCommand updateCourse,
+            IGenerateEntryCodeCommand accessCourse)
         {
             this.getCourse = getCourseQuery;
             this.createCourse = createCourseCommand;
             this.updateCourse = updateCourse;
+            this.accessCourse = accessCourse;
         }
+
+        #endregion
 
         // GET: api/Courses
         [HttpGet]
@@ -43,7 +57,7 @@ namespace SchoolManagement.WebApi.Controllers
             return Ok(course);
         }
 
-        // GET: api/Courses/name
+        // GET: api/Courses/SomeName
         [HttpGet("{name}")]
         public ActionResult Get(string name)
         {
@@ -51,7 +65,7 @@ namespace SchoolManagement.WebApi.Controllers
             return Ok(courses);
         }
 
-        // GET: api/Course?tutorId=5
+        // GET: api/Courses?tutorId=5
         [HttpGet]
         public ActionResult GetByTutor([FromQuery] int tutorId)
         {
@@ -59,7 +73,7 @@ namespace SchoolManagement.WebApi.Controllers
             return Ok(courses);
         }
 
-        // POST: api/Course
+        // POST: api/Courses
         [HttpPost]
         public ActionResult Post([FromBody] CreateCourseDto courseDto)
         {
@@ -74,7 +88,7 @@ namespace SchoolManagement.WebApi.Controllers
             }
         }
 
-        // PUT: api/Course/5
+        // PUT: api/Courses/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] UpdateCourseDto courseDto)
         {
@@ -88,6 +102,21 @@ namespace SchoolManagement.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
             catch (TutorNotExistsException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // GET: api/Courses/5/code
+        [HttpGet("{id}/code")]
+        public ActionResult GenerateEntryCode(int id)
+        {
+            try
+            {
+                accessCourse.GenerateEntryCode(id);
+                return Ok();
+            }
+            catch (CourseNotExistsException ex)
             {
                 return BadRequest(ex.Message);
             }

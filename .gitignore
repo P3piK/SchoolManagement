@@ -5,7 +5,6 @@
 /SchoolManagement/obj/Debug/netcoreapp3.0
 /SchoolManagement.Core/obj/Debug/netcoreapp3.0
 /SchoolManagement.Data/obj/Debug/netcoreapp3.0
-/.vs/SchoolManagement
 /SchoolManagement/bin/Debug/netcoreapp3.0
 /SchoolManagement.Core/bin/Debug/netcoreapp3.0
 /SchoolManagement.Data/bin/Debug/netcoreapp3.0
@@ -21,3 +20,4 @@
 /SchoolManagement.WebApi/bin/Debug/netcoreapp3.1
 /SchoolManagement.Domain/bin/Debug/netcoreapp3.1
 /SchoolManagement.Application/bin/Debug/netcoreapp3.1
+/.vs

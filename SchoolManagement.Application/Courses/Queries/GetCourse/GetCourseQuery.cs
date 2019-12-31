@@ -26,7 +26,7 @@ namespace SchoolManagement.Application.Courses.Queries.GetCourse
         public IEnumerable<GetCourseDto> FindByName(string name)
         {
             var data = courseData.FindByPartialName(name);
-            return mapper.Map<IEnumerable<GetCourseDto>>(name);
+            return mapper.Map<IEnumerable<GetCourseDto>>(data);
         }
 
         public IEnumerable<GetCourseDto> FindByTutor(int tutorId)

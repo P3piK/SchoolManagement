@@ -13,8 +13,17 @@ namespace SchoolManagement.Domain.Entities
         public string Description { get; set; }
         public string Password { get; set; }
         public string EntryCode { get; set; }
-        public string EntryCodeDate { get; set; }
+        public DateTime? EntryCodeDate { get; set; }
         public DateTime? BeginDate { get; set; }
+
+
+        public string GenerateEntryCode()
+        {
+            this.EntryCode = Guid.NewGuid().ToString().Substring(0, 6);
+            this.EntryCodeDate = DateTime.Now;
+
+            return this.EntryCode;
+        }
 
     }
 }

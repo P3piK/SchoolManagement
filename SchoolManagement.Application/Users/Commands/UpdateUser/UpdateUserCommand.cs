@@ -19,13 +19,13 @@ namespace SchoolManagement.Application.Users.Commands.UpdateUser
             this.userData = userData;
         }
 
-        public void UpdateUser(UpdateUserDto dto)
+        public void UpdateUser(UpdateUserDto userDto)
         {
-            var user = userData.GetByLogin(dto.Login);
-            Guard.EnsureAccountExists(user, dto.Login);
-            Guard.EnsureAccountNotExists(userData.GetByLogin(dto.NewLogin));
+            var user = userData.GetByLogin(userDto.Login);
+            Guard.EnsureAccountExists(user, userDto.Login);
+            Guard.EnsureAccountNotExists(userData.GetByLogin(userDto.NewLogin));
 
-            user = mapper.Map(dto, user);
+            user = mapper.Map(userDto, user);
             userData.Update(user);
         }
     }
